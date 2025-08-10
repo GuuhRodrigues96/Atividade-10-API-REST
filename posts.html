@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos os Posts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Todos os Posts</h1>
+            <p class="subtitle">Gerencie os posts da API</p>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="posts.html"><i class="fas fa-list"></i> Ver Posts</a></li>
+                <li><a href="create-post.html"><i class="fas fa-plus"></i> Criar Post</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="posts-container">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Carregando posts...</p>
+            </div>
+            <div id="posts-list"></div>
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Anterior</button>
+                <span id="page-info">Página 1</span>
+                <button id="next-page">Próxima <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>Desenvolvido por [Seu Nome]</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

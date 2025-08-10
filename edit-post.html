@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Post</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Editar Post</h1>
+            <p class="subtitle">Atualize o conteúdo existente</p>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="posts.html"><i class="fas fa-list"></i> Ver Posts</a></li>
+                <li><a href="create-post.html"><i class="fas fa-plus"></i> Criar Post</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <form id="edit-post-form">
+            <input type="hidden" id="edit-post-id">
+            <div class="form-group">
+                <label for="edit-title"><i class="fas fa-heading"></i> Título:</label>
+                <input type="text" id="edit-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-body"><i class="fas fa-align-left"></i> Conteúdo:</label>
+                <textarea id="edit-body" name="body" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-userId"><i class="fas fa-user"></i> ID do Usuário:</label>
+                <input type="number" id="edit-userId" name="userId" required min="1">
+            </div>
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">Atualizar Post</span>
+                <span class="btn-loading"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+        </form>
+        <div id="edit-message"></div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>Desenvolvido por [Seu Nome]</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
