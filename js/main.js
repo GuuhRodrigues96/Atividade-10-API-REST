@@ -6,7 +6,6 @@ let totalPosts = 0;
 
 // Inicialização da aplicação
 document.addEventListener('DOMContentLoaded', function() {
-    // Verifica em qual página estamos
     if (document.querySelector('.posts-container')) {
         initPostsPage();
     }
@@ -20,11 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Funções para a página de posts
 function initPostsPage() {
     loadPosts();
     
-    // Configura os listeners de paginação
     document.getElementById('prev-page').addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
@@ -40,7 +37,6 @@ function initPostsPage() {
     });
 }
 
-// Carrega posts com paginação
 function loadPosts() {
     const postsList = document.getElementById('posts-list');
     const loadingSpinner = document.querySelector('.loading-spinner');
@@ -48,21 +44,17 @@ function loadPosts() {
     const nextPageBtn = document.getElementById('next-page');
     const pageInfo = document.getElementById('page-info');
     
-    // Mostra o spinner de loading
     postsList.innerHTML = '';
     loadingSpinner.style.display = 'flex';
     
-    // Calcula os limites da paginação
     const start = (currentPage - 1) * POSTS_PER_PAGE;
     const end = start + POSTS_PER_PAGE;
     
-    // Primeiro obtemos o total de posts
     fetch(`${API_BASE_URL}/posts`)
         .then(response => response.json())
         .then(posts => {
             totalPosts = posts.length;
             
-            // Depois buscamos apenas os posts da página atual
             fetch(`${API_BASE_URL}/posts`)
     .then(response => {
         if (!response.ok) throw new Error('Erro ao carregar posts');
@@ -84,7 +76,6 @@ function loadPosts() {
             postsList.appendChild(postElement);
         });
         
-        // Atualiza a paginação
         pageInfo.textContent = `Página ${currentPage}`;
         prevPageBtn.disabled = currentPage === 1;
         nextPageBtn.disabled = currentPage * POSTS_PER_PAGE >= totalPosts;
@@ -94,7 +85,6 @@ function loadPosts() {
         console.error('Error:', error);
     });
             
-            // Atualiza a paginação
             pageInfo.textContent = `Página ${currentPage}`;
             prevPageBtn.disabled = currentPage === 1;
             nextPageBtn.disabled = currentPage * POSTS_PER_PAGE >= totalPosts;
@@ -105,13 +95,11 @@ function loadPosts() {
         });
 }
 
-// Cria o elemento HTML para um post
 function createPostElement(post) {
     const postElement = document.createElement('div');
     postElement.className = 'post';
     postElement.dataset.id = post.id;
     
-    // Gerar uma imagem aleatória para cada post
     const randomImageId = Math.floor(Math.random() * 1000); // Número aleatório para a imagem
     const imageUrl = `https://picsum.photos/600/300?random=${randomImageId}`;
     
@@ -131,7 +119,6 @@ function createPostElement(post) {
     
 
     
-    // Adiciona eventos aos botões
     postElement.querySelector('.edit-btn').addEventListener('click', () => {
         editPost(post.id);
     });
@@ -143,7 +130,6 @@ function createPostElement(post) {
     return postElement;
 }
 
-// Função para deletar um post
 function deletePost(postId) {
     if (!confirm('Tem certeza que deseja excluir este post?')) return;
     
@@ -151,12 +137,10 @@ function deletePost(postId) {
         method: 'DELETE'
     })
     .then(() => {
-        // Remove o post da UI
         const postElement = document.querySelector(`.post[data-id="${postId}"]`);
         if (postElement) {
             postElement.remove();
             
-            // Recarrega os posts para garantir a sincronização
             loadPosts();
         }
     })
@@ -166,7 +150,6 @@ function deletePost(postId) {
     });
 }
 
-// Função para editar um post (abre o formulário)
 function editPost(postId) {
     fetch(`${API_BASE_URL}/posts/${postId}`)
         .then(response => {
@@ -174,13 +157,11 @@ function editPost(postId) {
             return response.json();
         })
         .then(post => {
-            // Preenche o formulário de edição
             document.getElementById('edit-post-id').value = post.id;
             document.getElementById('edit-title').value = post.title;
             document.getElementById('edit-body').value = post.body;
             document.getElementById('edit-userId').value = post.userId;
             
-            // Redireciona para a página de edição
             window.location.href = 'edit-post.html';
         })
         .catch(error => {
@@ -189,7 +170,6 @@ function editPost(postId) {
         });
 }
 
-// Configura o formulário de criação de post
 function setupPostForm() {
     const form = document.getElementById('post-form');
     const submitBtn = form.querySelector('.submit-btn');
@@ -202,7 +182,6 @@ function setupPostForm() {
         const body = document.getElementById('body').value.trim();
         const userId = document.getElementById('userId').value.trim();
         
-        // Validação básica
         if (!title || !body || !userId) {
             messageDiv.textContent = 'Por favor, preencha todos os campos.';
             messageDiv.className = 'error';
@@ -215,7 +194,6 @@ function setupPostForm() {
             userId: parseInt(userId)
         };
         
-        // Mostra o loading
         submitBtn.classList.add('loading');
         messageDiv.textContent = '';
         messageDiv.className = '';
@@ -247,7 +225,6 @@ function setupPostForm() {
     });
 }
 
-// Configura o formulário de edição de post
 function setupEditForm() {
     const form = document.getElementById('edit-post-form');
     const submitBtn = form.querySelector('.submit-btn');
@@ -261,7 +238,6 @@ function setupEditForm() {
         const body = document.getElementById('edit-body').value.trim();
         const userId = document.getElementById('edit-userId').value.trim();
         
-        // Validação básica
         if (!postId || !title || !body || !userId) {
             messageDiv.textContent = 'Por favor, preencha todos os campos.';
             messageDiv.className = 'error';
@@ -275,7 +251,6 @@ function setupEditForm() {
             userId: parseInt(userId)
         };
         
-        // Mostra o loading
         submitBtn.classList.add('loading');
         messageDiv.textContent = '';
         messageDiv.className = '';
@@ -295,7 +270,6 @@ function setupEditForm() {
             messageDiv.textContent = 'Post atualizado com sucesso!';
             messageDiv.className = 'success';
             
-            // Redireciona de volta após 2 segundos
             setTimeout(() => {
                 window.location.href = 'posts.html';
             }, 2000);
