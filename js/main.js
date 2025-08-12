@@ -111,11 +111,16 @@ function createPostElement(post) {
     postElement.className = 'post';
     postElement.dataset.id = post.id;
     
+    // Gerar uma imagem aleatória para cada post
+    const randomImageId = Math.floor(Math.random() * 1000); // Número aleatório para a imagem
+    const imageUrl = `https://picsum.photos/600/300?random=${randomImageId}`;
+    
     postElement.innerHTML = `
         <div class="post-actions">
             <button class="edit-btn" title="Editar post"><i class="fas fa-edit"></i></button>
             <button class="delete-btn" title="Excluir post"><i class="fas fa-trash-alt"></i></button>
         </div>
+        <img src="${imageUrl}" alt="${post.title}" class="post-image">
         <h3>${post.title}</h3>
         <p>${post.body}</p>
         <div class="post-meta">
@@ -123,6 +128,8 @@ function createPostElement(post) {
             <p><strong>ID do Post:</strong> ${post.id}</p>
         </div>
     `;
+    
+
     
     // Adiciona eventos aos botões
     postElement.querySelector('.edit-btn').addEventListener('click', () => {

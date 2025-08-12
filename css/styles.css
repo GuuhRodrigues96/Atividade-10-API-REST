@@ -402,3 +402,16 @@ footer {
         width: 100%;
     }
 }
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.post:hover .post-image {
+    transform: scale(1.02);
+}
