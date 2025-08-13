@@ -1,6 +1,6 @@
 # Relato de Implementação: Atividade-10-API-REST
 
-[cite_start]Este documento serve como um relatório detalhado e um guia para o projeto **Atividade-10-API-REST**[cite: 3], uma aplicação front-end desenvolvida para interagir com uma API REST.
+Este documento serve como um relatório detalhado e um guia para o projeto **Atividade-10-API-REST**[cite: 3], uma aplicação front-end desenvolvida para interagir com uma API REST.
 
 ## 🚀 Visão Geral do Projeto
 
