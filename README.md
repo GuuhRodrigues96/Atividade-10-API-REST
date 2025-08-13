@@ -1,6 +1,6 @@
 # Relato de Implementação: Atividade-10-API-REST
 
-[cite_start]Este documento serve como um relatório detalhado e um guia para o projeto **Atividade-10-API-REST**[cite: 3], uma aplicação front-end desenvolvida para interagir com uma API REST.
+Este documento serve como um relatório detalhado e um guia para o projeto **Atividade-10-API-REST**, uma aplicação front-end desenvolvida para interagir com uma API REST.
 
 ## 🚀 Visão Geral do Projeto
 
@@ -10,7 +10,7 @@ O projeto é uma aplicação front-end completa que implementa as quatro operaç
 
 -   **Visualização de Posts (Read):** Lista todos os posts da API de forma paginada.
 -   **Criação de Posts (Create):** Permite adicionar novos posts através de um formulário.
--   [cite_start]**Edição de Posts (Update):** Permite atualizar o conteúdo de posts existentes[cite: 1].
+-   **Edição de Posts (Update):** Permite atualizar o conteúdo de posts existentes.
 -   **Exclusão de Posts (Delete):** Permite remover posts da API.
 -   **Interface Responsiva:** O design se adapta a diferentes tamanhos de tela.
 -   **Feedback Visual:** Indicadores de carregamento e mensagens de sucesso/erro para o usuário.
@@ -21,7 +21,7 @@ O projeto é uma aplicação front-end completa que implementa as quatro operaç
 -   CSS3 (com Variáveis, Flexbox e Grid)
 -   JavaScript (ES6+)
 -   json-server
--   [cite_start]Font Awesome (para ícones) [cite: 1]
+-   Font Awesome (para ícones)
 
 ## ⚡ Como Executar
 
@@ -55,7 +55,7 @@ Para rodar este projeto em sua máquina local, siga os passos abaixo:
 
 O projeto é **altamente relevante** como um exercício prático e portfólio para demonstrar habilidades essenciais de desenvolvimento front-end.
 
--   [cite_start]**Contexto Acadêmico e Prático:** O nome "Atividade-10" sugere um projeto acadêmico, e seu escopo é ideal para solidificar o conhecimento sobre o consumo de APIs REST[cite: 3].
+-   **Contexto Acadêmico e Prático:** O nome "Atividade-10" sugere um projeto acadêmico, e seu escopo é ideal para solidificar o conhecimento sobre o consumo de APIs REST.
 -   **Demonstração de Competências:** O código demonstra de forma objetiva o domínio sobre:
     -   **Operações CRUD:** Mapeamento correto das ações para os métodos HTTP (`GET`, `POST`, `PUT`, `DELETE`).
     -   **JavaScript Assíncrono:** Uso do `fetch` para lidar com requisições de rede.
@@ -65,7 +65,7 @@ O projeto é **altamente relevante** como um exercício prático e portfólio pa
 
 O projeto apresenta uma organização limpa e segue boas práticas, facilitando sua manutenção e compreensão.
 
--   [cite_start]**Estrutura de Arquivos:** Clara separação entre estrutura (HTML)[cite: 1], estilo (CSS) e lógica (JavaScript). [cite_start]A nomeclatura dos arquivos é intuitiva (`create-post.html`, `edit-post.html`, etc.)[cite: 1].
+-   **Estrutura de Arquivos:** Clara separação entre estrutura (HTML), estilo (CSS) e lógica (JavaScript). A nomeclatura dos arquivos é intuitiva (`create-post.html`, `edit-post.html`, etc.).
 -   **Código CSS (`styles.css`):**
     -   O uso de **CSS Variables** (`:root`) facilita a manutenção do tema e garante consistência visual.
     -   O design é **responsivo**, adaptando-se a diferentes telas através de `@media` queries.
@@ -79,12 +79,12 @@ O projeto está **funcional e completo** dentro do escopo proposto, com todas as
 
 -   **Leitura e Paginação:** A função `loadPosts` busca os posts e os exibe de forma paginada.
 -   **Criação:** O formulário em `create-post.html` envia uma requisição `POST` e gerencia a submissão.
--   [cite_start]**Edição:** A aplicação busca os dados de um post, preenche o formulário de edição e envia uma requisição `PUT` para atualizá-lo[cite: 1].
+-   **Edição:** A aplicação busca os dados de um post, preenche o formulário de edição e envia uma requisição `PUT` para atualizá-lo.
 -   **Exclusão:** A função `deletePost` envia uma requisição `DELETE` e remove o elemento da interface, com confirmação do usuário.
 
 ## 📄 Licença
 
-[cite_start]Este projeto está licenciado sob a licença MIT[cite: 2].
+Este projeto está licenciado sob a licença MIT.
 
 ---
-[cite_start]Desenvolvido por **Gustavo Rodrigues**[cite: 2].
+Desenvolvido por **Gustavo Rodrigues**.
