@@ -1,22 +1,10 @@
 {
   "posts": [
     {
-      "id": "1442",
-      "title": "Mitsubishi Eclipse",
-      "body": "Carrão!",
-      "userId": 1
-    },
-    {
-      "id": "b3a4",
-      "title": "Salve",
-      "body": "SALVE",
-      "userId": 1233
-    },
-    {
-      "id": "84d3",
-      "title": "qual será a próxima imagem?",
-      "body": "sei lá",
-      "userId": 12
+      "id": "f195",
+      "title": "Este é um post aleatório",
+      "body": "Não sei qual será a imagem, espero que seja bonita!",
+      "userId": 15
     }
   ]
 }

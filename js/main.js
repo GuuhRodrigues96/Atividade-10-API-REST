@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (document.getElementById('edit-post-form')) {
         setupEditForm();
+        // Carrega os dados do post se houver um ID na URL
+        loadPostForEditing();
     }
 });
 
@@ -51,39 +53,25 @@ function loadPosts() {
     const end = start + POSTS_PER_PAGE;
     
     fetch(`${API_BASE_URL}/posts`)
-        .then(response => response.json())
-        .then(posts => {
-            totalPosts = posts.length;
+        .then(response => {
+            if (!response.ok) throw new Error('Erro ao carregar posts');
+            return response.json();
+        })
+        .then(allPosts => {
+            totalPosts = allPosts.length;
+            const paginatedPosts = allPosts.slice(start, end);
             
-            fetch(`${API_BASE_URL}/posts`)
-    .then(response => {
-        if (!response.ok) throw new Error('Erro ao carregar posts');
-        return response.json();
-    })
-    .then(allPosts => {
-        totalPosts = allPosts.length;
-        const paginatedPosts = allPosts.slice(start, end);
-        
-        loadingSpinner.style.display = 'none';
-        
-        if (paginatedPosts.length === 0) {
-            postsList.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
-            return;
-        }
-        
-        paginatedPosts.forEach(post => {
-            const postElement = createPostElement(post);
-            postsList.appendChild(postElement);
-        });
-        
-        pageInfo.textContent = `Página ${currentPage}`;
-        prevPageBtn.disabled = currentPage === 1;
-        nextPageBtn.disabled = currentPage * POSTS_PER_PAGE >= totalPosts;
-    })
-    .catch(error => {
-        loadingSpinner.innerHTML = '<p class="error">Erro ao carregar os posts. Tente novamente.</p>';
-        console.error('Error:', error);
-    });
+            loadingSpinner.style.display = 'none';
+            
+            if (paginatedPosts.length === 0) {
+                postsList.innerHTML = '<p class="no-posts">Nenhum post encontrado.</p>';
+                return;
+            }
+            
+            paginatedPosts.forEach(post => {
+                const postElement = createPostElement(post);
+                postsList.appendChild(postElement);
+            });
             
             pageInfo.textContent = `Página ${currentPage}`;
             prevPageBtn.disabled = currentPage === 1;
@@ -117,8 +105,6 @@ function createPostElement(post) {
         </div>
     `;
     
-
-    
     postElement.querySelector('.edit-btn').addEventListener('click', () => {
         editPost(post.id);
     });
@@ -140,7 +126,6 @@ function deletePost(postId) {
         const postElement = document.querySelector(`.post[data-id="${postId}"]`);
         if (postElement) {
             postElement.remove();
-            
             loadPosts();
         }
     })
@@ -151,6 +136,15 @@ function deletePost(postId) {
 }
 
 function editPost(postId) {
+    // Armazena o ID do post que está sendo editado
+    sessionStorage.setItem('editingPostId', postId);
+    window.location.href = 'edit-post.html';
+}
+
+function loadPostForEditing() {
+    const postId = sessionStorage.getItem('editingPostId');
+    if (!postId) return;
+    
     fetch(`${API_BASE_URL}/posts/${postId}`)
         .then(response => {
             if (!response.ok) throw new Error('Post não encontrado');
@@ -161,11 +155,11 @@ function editPost(postId) {
             document.getElementById('edit-title').value = post.title;
             document.getElementById('edit-body').value = post.body;
             document.getElementById('edit-userId').value = post.userId;
-            
-            window.location.href = 'edit-post.html';
         })
         .catch(error => {
-            alert('Erro ao carregar o post para edição. Tente novamente.');
+            const messageDiv = document.getElementById('edit-message');
+            messageDiv.textContent = 'Erro ao carregar o post para edição. Tente novamente.';
+            messageDiv.className = 'error';
             console.error('Error:', error);
         });
 }
